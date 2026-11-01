@@ -61,7 +61,7 @@ Open Command Prompt or PowerShell and run:
 
 Replace the example directory with the actual path to your photos.
 
-#### additional timestamps
+## Additional timestamps
 
 in order to use the whatsapp form using -w or the extended form --whatsapp
 ```bash

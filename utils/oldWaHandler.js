@@ -1,12 +1,12 @@
+import path from "path";
 import { normalDateParser } from "./normalDateParser.js";
 import { exiftool } from "exiftool-vendored";
 
 
-export const parsedHandler = async (files) => {
+export const oldWaHandler = async (file) => {
   try {
-    for (let i = 0; i < files.length; i++) {
-      const element = files[i];
-      const elementDate = normalDateParser(element);
+      const fileName = path.basename(file)
+      const elementDate = normalDateParser(fileName,"old");
       const year = elementDate.year
       const month = elementDate.month
       const day = elementDate.day
@@ -14,12 +14,11 @@ export const parsedHandler = async (files) => {
       const exifDateStr = `${year}:${month}:${day} 00:00:00`;
         // console.log(year);
         
-      await exiftool.write(files[i], {
+      await exiftool.write(file, {
         DateTimeOriginal: exifDateStr,
         CreateDate: exifDateStr,
       });
-      console.log(files[i]);
-    }
+      console.log(file);
   } catch (error) {
     console.log(error);
   }

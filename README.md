@@ -63,6 +63,8 @@ Replace the example directory with the actual path to your photos.
 
 ## Additional timestamps
 
+
+#### this is only used for version 1.0.8 because it's not needed in the newest versions because it has become automatic
 in order to use the whatsapp form using -w or the extended form --whatsapp
 ```bash
 ./unixtodate-linux --src /path/to/photos -w

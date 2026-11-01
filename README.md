@@ -9,6 +9,9 @@ when you organize your photos for something like immich you will see that their 
 
 <img width="2072" height="1071" alt="image(2)(1)" src="https://github.com/user-attachments/assets/b8fd62d6-ea72-4d6f-a4c9-7ac68625bc6a" />
 
+# BIG NOTICE
+separate photos you will use with this program because in order to avoid chaos
+
 ## Usage
 
 ### Linux
@@ -58,6 +61,14 @@ Open Command Prompt or PowerShell and run:
 
 Replace the example directory with the actual path to your photos.
 
+#### additional timestamps
+
+in order to use the whatsapp form using -w or the extended form --whatsapp
+```bash
+./unixtodate-linux --src /path/to/photos -w
+```
+
+
 ## Supported Timestamps
 
 UnixToDate supports two common Unix timestamp formats:
@@ -67,6 +78,11 @@ UnixToDate supports two common Unix timestamp formats:
 | 10 digits | Seconds | `1735689600` |
 | 13 digits | Milliseconds | `1735689600000` |
 
+whatsapp form
+
+| Filename | Registered date |
+|---|---|
+| IMG-20250513 | 2025/05/13 hour:00 m:00 s: 00 | 
 
 ## Contributing
 

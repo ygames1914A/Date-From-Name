@@ -80,9 +80,10 @@ UnixToDate supports two common Unix timestamp formats:
 
 whatsapp form
 
-| Filename | Registered date |
-|---|---|
-| IMG-20250513 | 2025/05/13 hour:00 m:00 s: 00 | 
+| type | Filename | output date |
+|---|---|---|
+| `old` | IMG-20250513 | 2025/05/13 hour:00 m:00 s: 00 |
+| `new` | WhatsApp Image 2026-10-19 at 11.09.10 PM | 2026/10/16 hour:11 m:09 s:10
 
 ## Contributing
 

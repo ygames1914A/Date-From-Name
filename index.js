@@ -66,7 +66,7 @@ async function filesHandler(inputFile) {
                 console.log('new whatsapp mode')
                 await newWaHandler(element)
             } else if (
-                fileName.split('-')[0] === 'IMG' &&
+                ["IMG","VID"].includes(fileName.split('-')[0]) &&
                 fileName.split('-')[1].length === 8
             ) {
                 console.log('old whatsapp mode')

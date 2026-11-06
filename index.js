@@ -8,6 +8,7 @@ import { unixHandler } from './utils/unixHandler.js'
 import { newWaHandler } from './utils/newWaHandler.js'
 import path from 'node:path'
 import fs  from 'node:fs/promises'
+import { hasOC } from './utils/hasOC.js'
 
 //  const directory = "/mnt/new/nepic";
 
@@ -45,6 +46,13 @@ async function filesHandler(inputFile) {
                 .split('(')[0]
             const elementFileLength = elementUnix.length
 
+            const OCExist = await hasOC(element)
+            
+            if (OCExist) {
+                console.log(`${fileName} already has date`)
+                continue
+            }
+
             if (
                 (/^\d+$/.test(elementUnix) && elementFileLength === 13) ||
                 elementFileLength === 10
@@ -64,7 +72,7 @@ async function filesHandler(inputFile) {
                 console.log('old whatsapp mode')
                 await oldWaHandler(element)
             } else {
-                console.log('file has been skipped NO MATCHING CRITERIA')
+                console.log(`${fileName} has been skipped NO MATCHING CRITERIA`)
             }
         }
 

@@ -9,6 +9,7 @@ import { desktopWaHandler } from './utils/desktopWaHandler.js'
 import path from 'node:path'
 import fs  from 'node:fs/promises'
 import { hasOC } from './utils/hasOC.js'
+import { normalAndroidHandler } from './utils/normalAndroidHandler.js'
 
 //  const directory = "/mnt/new/nepic";
 
@@ -16,6 +17,7 @@ const optionDefinitions = [
     { name: 'src', type: String, multiple: true, defaultOption: true },
     { name: 'whatsapp', alias: 'w', type: Boolean },
     { name: 'reset', alias: 'r', type: Boolean },
+    { name: 'delete', alias:'d',type:Boolean},
     { name: 'force', alias:'f',type:Boolean}
 ]
 
@@ -48,7 +50,7 @@ async function filesHandler(inputFile) {
 
             const OCExist = await hasOC(element)
             
-            if (OCExist) {
+            if (OCExist && args.force) {
                 console.log(`${fileName} already has date`)
                 continue
             }
@@ -59,17 +61,20 @@ async function filesHandler(inputFile) {
             ) {
                 console.log('unix mode')
                 await unixHandler(element)
+            } else if (fileName.match(/^(IMG|VID)_(\d{8})_(\d{6})(.+)?\..+/)) {
+                console.log("android devices mode")
+                await normalAndroidHandler(element)
             } else if (
                 fileName.split(' ')[0] === 'WhatsApp' &&
                 fileName.split(' ')[1]
             ) {
-                console.log('new whatsapp mode')
+                console.log('desktop whatsapp mode')
                 await desktopWaHandler(element)
             } else if (
                 ["IMG","VID"].includes(fileName.split('-')[0]) &&
                 fileName.split('-')[1].length === 8
             ) {
-                console.log('old whatsapp mode')
+                console.log('phone whatsapp mode')
                 await phoneWaHandler(element)
             } else {
                 console.log(`${fileName} has been skipped NO MATCHING CRITERIA`)
@@ -90,7 +95,7 @@ async function filesHandler(inputFile) {
     }
 }
 
-async function forceHandler() {
+async function deleteHandler() {
     try {
         // files before cleaning
         let files = await multipleSourceHelper(args)
@@ -138,8 +143,8 @@ async function forceHandler() {
     } 
 }
 
-if (args.force) {
-    forceHandler()
+if (args.delete) {
+    deleteHandler()
 }else {
     filesHandler()
 }

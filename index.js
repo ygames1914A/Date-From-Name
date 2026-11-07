@@ -49,8 +49,8 @@ async function filesHandler(inputFile) {
             const elementFileLength = elementUnix.length
 
             const OCExist = await hasOC(element)
-            
-            if (OCExist && args.force) {
+
+            if (OCExist && !args.force) {
                 console.log(`${fileName} already has date`)
                 continue
             }

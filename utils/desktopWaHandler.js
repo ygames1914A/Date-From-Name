@@ -2,7 +2,7 @@ import path from "path";
 import { normalDateParser } from "./normalDateParser.js";
 import { exiftool } from "exiftool-vendored";
 
-export const newWaHandler = async (file) => {
+export const desktopWaHandler = async (file) => {
     try {
         const fileName = path.basename(file);
         const date = normalDateParser(fileName, "new");

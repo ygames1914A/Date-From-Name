@@ -3,9 +3,9 @@ import { setTimeout } from 'node:timers/promises'
 import process from 'node:process'
 import commandLineArgs from 'command-line-args'
 import { multipleSourceHelper } from './utils/multipleSourceHelper.js'
-import { oldWaHandler } from './utils/oldWaHandler.js'
+import { oldWaHandler } from './utils/phoneWaHandler.js'
 import { unixHandler } from './utils/unixHandler.js'
-import { newWaHandler } from './utils/newWaHandler.js'
+import { newWaHandler } from './utils/desktopWaHandler.js'
 import path from 'node:path'
 import fs  from 'node:fs/promises'
 import { hasOC } from './utils/hasOC.js'
@@ -64,13 +64,13 @@ async function filesHandler(inputFile) {
                 fileName.split(' ')[1]
             ) {
                 console.log('new whatsapp mode')
-                await newWaHandler(element)
+                await desktopWaHandler(element)
             } else if (
                 ["IMG","VID"].includes(fileName.split('-')[0]) &&
                 fileName.split('-')[1].length === 8
             ) {
                 console.log('old whatsapp mode')
-                await oldWaHandler(element)
+                await phoneWaHandler(element)
             } else {
                 console.log(`${fileName} has been skipped NO MATCHING CRITERIA`)
             }

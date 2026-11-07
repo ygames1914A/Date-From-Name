@@ -3,7 +3,7 @@ import { normalDateParser } from "./normalDateParser.js";
 import { exiftool } from "exiftool-vendored";
 
 
-export const oldWaHandler = async (file) => {
+export const phoneWaHandler = async (file) => {
   try {
       const fileName = path.basename(file)
       const elementDate = normalDateParser(fileName,"old");
